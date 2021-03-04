@@ -1,0 +1,1 @@
+# ProjectF2P initgit add README.mdgit commit -m RN initgit branch -M maingit remote add origin https://github.com/yuri-akira/ProjectF2P.gitgit push -u origin main
