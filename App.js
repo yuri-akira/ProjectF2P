@@ -8,6 +8,7 @@ import SearchScreen from './Components/SearchScreen';
 
 export default function App() {
   return (
+    //Navigation will be implemented
     <View>
       <SearchScreen/>
     </View>
