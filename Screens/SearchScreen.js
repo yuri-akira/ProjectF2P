@@ -1,5 +1,5 @@
 import React from 'react';
-import Select from '../Components/Picker';
+import Select from '../Components/CategorySelector';
 
 import {
     StyleSheet,
