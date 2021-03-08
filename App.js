@@ -5,10 +5,9 @@ import { View, Text } from 'react-native'
 import SearchScreen from './Screens/SearchScreen';
 
 
-
 export default function App() {
   return (
-    //Navigation will be implemented
+    //// TODO implement navigation
     <View>
       <SearchScreen/>
     </View>
