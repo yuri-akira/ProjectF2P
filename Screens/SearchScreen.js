@@ -1,5 +1,5 @@
 import React from 'react';
-import Select from '../Components/CategorySelector';
+import CategorySelector from '../Components/CategorySelector';
 
 import {
     StyleSheet,
@@ -19,7 +19,7 @@ export default function SearchScreen() {
                     source={require('../img/freetogame-logo.png')}
                     style={styles.logo}
                 />
-                <Select/>
+                <CategorySelector/>
                 <TouchableHighlight style={styles.btnSearch} underlayColor="#750f04">
                     <Text style={{ color: '#ffff' }}>Search</Text>
                 </TouchableHighlight>
