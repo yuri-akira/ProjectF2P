@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 
 
-export default function HomeScreen() {
+export default function SearchScreen() {
     return (
         <ImageBackground source={require('../img/imgbground.png')} style={styles.bgImg}>
             <View style={styles.container}>
