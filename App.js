@@ -2,7 +2,7 @@
 import React from 'react';
 import { View, Text } from 'react-native'
 
-import SearchScreen from './Components/SearchScreen';
+import SearchScreen from './Screens/SearchScreen';
 
 
 
