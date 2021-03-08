@@ -17,7 +17,7 @@ export default function Select() {
             <Picker
                 dropdownIconColor="#000000"
                 itemStyle={{ fontWeight: 'bold' }}
-                style={{ minWidth: '100%' }}
+                style={{ minWidth: 350}}
                 selectedValue={selectedCategory}
                 onValueChange={itemValue =>
                     setSelectedCategory(itemValue)
