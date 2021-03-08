@@ -1,4 +1,5 @@
 import React from 'react';
+import Select from './Picker';
 
 import {
     StyleSheet,
@@ -18,7 +19,7 @@ export default function HomeScreen() {
                     source={require('../img/freetogame-logo.png')}
                     style={styles.logo}
                 />
-
+                <Select/>
                 <TouchableHighlight style={styles.btnSearch} underlayColor="#750f04">
                     <Text style={{ color: '#ffff' }}>Search</Text>
                 </TouchableHighlight>
