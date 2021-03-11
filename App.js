@@ -11,8 +11,7 @@ export default function App() {
   return (
     // TODO Stack.Screen for the Details Screen 
     <NavigationContainer>
-      <Stack.Navigator
-      >
+      <Stack.Navigator>
         <Stack.Screen
           options={{ headerShown: false }}
           name="Search Screen"

@@ -38,8 +38,7 @@ export default ResultScreen = ({ route, navigation }) => {
     }, []);
 
     return (
-        <ImageBackground source={require('../img/imgbground.png')} style={styles.bgImg} imageStyle= 
-        {{opacity:0.9}}>
+        <ImageBackground source={require('../img/imgbground.png')} style={styles.bgImg} imageStyle={{opacity:0.9}}>
             <View style={styles.container}>
                 {isLoading ? <ActivityIndicator size="large" color="#0000ff" /> : (
                     <FlatList
