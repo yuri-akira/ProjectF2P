@@ -1,75 +1,92 @@
 import React, { useEffect, useState } from 'react';
 import {
-  ActivityIndicator,
-  FlatList,
-  Text,
-  View,
-  Image,
-  StyleSheet,
-  TouchableHighlight
+    ActivityIndicator,
+    FlatList,
+    Text,
+    View,
+    Image,
+    StyleSheet,
+    ImageBackground,
+    TouchableHighlight
 } from 'react-native';
 
 const renderItem = ({ item }) => (
-  <TouchableHighlight>
-    <View style={styles.card}>
-      <Image
-        source={{ uri: item.thumbnail }}
-        style={styles.img}
-      />
-
-      <Text style={styles.fontTitle}>{item.title}</Text>
-      <Text style={styles.fontPlatform}>{item.platform}</Text>
-    </View>
-  </TouchableHighlight>
+    <TouchableHighlight>
+        <View style={styles.card}>
+            <Image
+                source={{ uri: item.thumbnail }}
+                style={styles.img}
+            />
+            <Text style={styles.fontTitle}>{item.title}</Text>
+            <Text style={styles.fontDescription}>{item.short_description}</Text>
+            <Text style={styles.fontPlatform}>{item.platform}</Text>
+        </View>
+    </TouchableHighlight>
 )
 
-export default App = () => {
-  const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
+export default ResultScreen = ({ route, navigation }) => {
+    const { gender } = route.params;
+    const [isLoading, setLoading] = useState(true);
+    const [data, setData] = useState();
 
-  useEffect(() => {
-    fetch('https://www.freetogame.com/api/games?category=shooter')
-      .then((response) => response.json())
-      .then((json) => setData(json))
-      .catch((error) => console.error(error))
-      .finally(() => setLoading(false));
-  }, []);
+    useEffect(() => {
+        fetch(`https://www.freetogame.com/api/games?category=${gender}`)
+            .then((response) => response.json())
+            .then((json) => setData(json))
+            .catch((error) => console.error(error))
+            .finally(() => setLoading(false));
+    }, []);
 
-  return (
-    <View style={styles.container}>
-      {isLoading ? <ActivityIndicator  size="large" color="#0000ff" /> : (
-        <FlatList
-          data={data}
-          keyExtractor={({ id }) => id.toString()}
-          renderItem={renderItem}
-        />
-      )}
-    </View>
-  );
+    return (
+        <ImageBackground source={require('../img/imgbground.png')} style={styles.bgImg} imageStyle= 
+        {{opacity:0.9}}>
+            <View style={styles.container}>
+                {isLoading ? <ActivityIndicator size="large" color="#0000ff" /> : (
+                    <FlatList
+                        data={data}
+                        keyExtractor={({ id }) => id.toString()}
+                        renderItem={renderItem}
+                    />
+                )}
+            </View>
+        </ImageBackground>
+    );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 24
-  },
-  img: {
-    width: 400,
-    height: 100
-  },
-  card: {
-    marginVertical: 10,
-    borderWidth: 1,
-    borderRadius: 5,
-  },
-  fontTitle: {
-    paddingHorizontal: 5,
-    paddingBottom: 5,
-    fontSize: 20,
-    fontWeight: 'bold'
-  },
-  fontPlatform: {
-    paddingHorizontal: 5,
-    paddingBottom: 5
-  }
+    bgImg: {
+        width: '100%',
+        height: '100%',
+    },
+    container: {
+        flex: 1,
+        padding: 24,
+        justifyContent: 'center'
+    },
+    img: {
+        flex: 1,
+        height: 100,
+        resizeMode: 'cover'
+    },
+    card: {
+        backgroundColor: '#ffff',
+        marginVertical: 10,
+        borderWidth: 2,
+        borderRadius: 5,
+    },
+    fontTitle: {
+        fontSize: 25,
+        textAlign: 'center',
+        fontWeight: 'bold'
+    },
+    fontDescription: {
+        marginVertical: 5,
+        marginHorizontal: 15,
+        textAlign: 'justify',
+        fontSize: 17
+    },
+    fontPlatform: {
+        marginHorizontal: 15,
+        marginBottom: 10
+    }
 })
