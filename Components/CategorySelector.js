@@ -5,10 +5,11 @@ import {
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
-export default function Select() {
+export default function Select( props ) {
 
-    const [selectedCategory, setSelectedCategory] = useState([]);
-    
+    const [selectedCategory, setSelectedCategory] = useState();
+    props.funcGetCategory(selectedCategory)
+
     return (
         <View style={styles.pickerContainer}>
             <Picker
@@ -26,7 +27,7 @@ export default function Select() {
                 <Picker.Item label='Survival' value='survival' />
             </Picker>
         </View>
-    )
+    )   
 }
 
 const styles = StyleSheet.create({

@@ -10,8 +10,11 @@ import {
     TouchableHighlight
 } from 'react-native';
 
+export default function SearchScreen({ navigation }) {
+    
+    let category
+    const getCategory = categ => {return category = categ}
 
-export default function SearchScreen() {
     return (
         <ImageBackground source={require('../img/imgbground.png')} style={styles.bgImg}>
             <View style={styles.container}>
@@ -19,11 +22,14 @@ export default function SearchScreen() {
                     source={require('../img/freetogame-logo.png')}
                     style={styles.logo}
                 />
-                <CategorySelector/>
-                <TouchableHighlight style={styles.btnSearch} underlayColor="#750f04">
+                <CategorySelector funcGetCategory = {getCategory} />
+                <TouchableHighlight style={styles.btnSearch}
+                    underlayColor="#750f04"
+                    onPress={() => navigation.navigate('Results', {
+                        gender: category
+                    })}>
                     <Text style={{ color: '#ffff' }}>Search</Text>
                 </TouchableHighlight>
-
             </View>
         </ImageBackground>
     )
