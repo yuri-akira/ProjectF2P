@@ -43,8 +43,7 @@ const styles = StyleSheet.create({
         resizeMode: 'contain'
     },
     bgImg: {
-        width: '100%',
-        height: '100%'
+        flex:1
     },
     container: {
         alignItems: 'center',
