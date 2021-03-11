@@ -15,7 +15,7 @@ const renderItem = ({ item }) => (
         <View style={styles.card}>
             <Image
                 source={{ uri: item.thumbnail }}
-                style={styles.img}
+                style={styles.cardImg}
             />
             <Text style={styles.fontTitle}>{item.title}</Text>
             <Text style={styles.fontDescription}>{item.short_description}</Text>
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
         padding: 24,
         justifyContent: 'center'
     },
-    img: {
+    cardImg: {
         flex: 1,
         height: 100,
         resizeMode: 'cover'
