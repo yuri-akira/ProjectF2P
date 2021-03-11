@@ -7,7 +7,7 @@ import { Picker } from '@react-native-picker/picker';
 
 export default function CategorySelector( props ) {
 
-    const [selectedCategory, setSelectedCategory] = useState();
+    const [selectedCategory, setSelectedCategory] = useState('mmorpg');
     props.funcGetCategory(selectedCategory)
 
     return (
