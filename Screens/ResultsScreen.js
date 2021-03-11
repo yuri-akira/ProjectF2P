@@ -37,7 +37,7 @@ export default App = () => {
 
   return (
     <View style={styles.container}>
-      {isLoading ? <ActivityIndicator /> : (
+      {isLoading ? <ActivityIndicator  size="large" color="#0000ff" /> : (
         <FlatList
           data={data}
           keyExtractor={({ id }) => id.toString()}
