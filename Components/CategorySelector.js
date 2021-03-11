@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
-export default function Select( props ) {
+export default function CategorySelector( props ) {
 
     const [selectedCategory, setSelectedCategory] = useState();
     props.funcGetCategory(selectedCategory)
