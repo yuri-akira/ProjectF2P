@@ -24,6 +24,26 @@ const renderItem = ({ item }) => (
     </TouchableHighlight>
 )
 
+function renderContent(isLoading, data){
+  if(isLoading)
+    return renderLoading();
+  else
+    return renderList(data)
+}
+
+function renderLoading(){
+  return (<ActivityIndicator size="large" color="#0000ff" />)
+}
+
+function renderList(data){
+  return(
+    <FlatList
+      data={data}
+      keyExtractor={({ id }) => id.toString()}
+      renderItem={renderItem}
+    />)
+}
+
 export default ResultScreen = ({ route, navigation }) => {
     const { genre } = route.params;
     const [isLoading, setLoading] = useState(true);
@@ -39,14 +59,9 @@ export default ResultScreen = ({ route, navigation }) => {
 
     return (
         <ImageBackground source={require('../img/imgbground.png')} style={styles.bgImg} imageStyle={{opacity:0.9}}>
-            <View style={styles.container}>
-                {isLoading ? <ActivityIndicator size="large" color="#0000ff" /> : (
-                    <FlatList
-                        data={data}
-                        keyExtractor={({ id }) => id.toString()}
-                        renderItem={renderItem}
-                    />
-                )}
+            <View style={styles.container}>{
+              renderContent(isLoading, data)
+            }
             </View>
         </ImageBackground>
     );
