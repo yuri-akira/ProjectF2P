@@ -7,11 +7,8 @@ import { Picker } from '@react-native-picker/picker';
 
 export default function Select() {
 
-    const [category, setCategory] = useState(
-        ['mmorpg', 'shooter', 'strategy', 'sports', 'survival']
-    );
-
     const [selectedCategory, setSelectedCategory] = useState([]);
+    
     return (
         <View style={styles.pickerContainer}>
             <Picker
