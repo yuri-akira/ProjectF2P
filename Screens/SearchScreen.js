@@ -26,7 +26,7 @@ export default function SearchScreen({ navigation }) {
                 <TouchableHighlight style={styles.btnSearch}
                     underlayColor="#750f04"
                     onPress={() => navigation.navigate('Results', {
-                        gender: category
+                        genre : category
                     })}>
                     <Text style={{ color: '#ffff' }}>Search</Text>
                 </TouchableHighlight>

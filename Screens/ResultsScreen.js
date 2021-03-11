@@ -25,12 +25,12 @@ const renderItem = ({ item }) => (
 )
 
 export default ResultScreen = ({ route, navigation }) => {
-    const { gender } = route.params;
+    const { genre } = route.params;
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState();
 
     useEffect(() => {
-        fetch(`https://www.freetogame.com/api/games?category=${gender}`)
+        fetch(`https://www.freetogame.com/api/games?category=${genre}`)
             .then((response) => response.json())
             .then((json) => setData(json))
             .catch((error) => console.error(error))
