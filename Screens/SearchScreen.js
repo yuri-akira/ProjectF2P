@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CategorySelector from '../Components/CategorySelector';
 
 import {
@@ -12,8 +12,7 @@ import {
 
 export default function SearchScreen({ navigation }) {
     
-    let category
-    const getCategory = categ => {return category = categ}
+    const [category, setCategory] = useState();
 
     return (
         <ImageBackground source={require('../img/imgbground.png')} style={styles.bgImg}>
@@ -22,7 +21,7 @@ export default function SearchScreen({ navigation }) {
                     source={require('../img/freetogame-logo.png')}
                     style={styles.logo}
                 />
-                <CategorySelector funcGetCategory = {getCategory} />
+                <CategorySelector funcGetCategory = { (category) => setCategory(category)  } />
                 <TouchableHighlight style={styles.btnSearch}
                     underlayColor="#750f04"
                     onPress={() => navigation.navigate('Results', {
