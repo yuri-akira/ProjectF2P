@@ -21,7 +21,7 @@ export default function SearchScreen({ navigation }) {
                     source={require('../img/freetogame-logo.png')}
                     style={styles.logo}
                 />
-                <CategorySelector funcGetCategory = { (category) => setCategory(category)  } />
+                <CategorySelector onCategoryChangedListener = { (category) => setCategory(category)  } />
                 <TouchableHighlight style={styles.btnSearch}
                     underlayColor="#750f04"
                     onPress={() => navigation.navigate('Results', {
