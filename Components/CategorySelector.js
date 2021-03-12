@@ -10,8 +10,9 @@ export default function CategorySelector( props ) {
     const [selectedCategory, setSelectedCategory] = useState('mmorpg');
 
     useEffect(() =>{
-        if (props.onCategoryChangedListener) 
+        if (props.onCategoryChangedListener){
             props.onCategoryChangedListener(selectedCategory)
+        }
     }, [selectedCategory]);
 
     return (

@@ -24,32 +24,33 @@ const renderItem = ({ item }) => (
     </TouchableHighlight>
 )
 
-function renderContent(isLoading, data){
-  if(isLoading)
-    return renderLoading();
-  else
-    return renderList(data)
+function renderContent(isLoading, data) {
+    if (isLoading) {
+        return renderLoading();
+    } else {
+        return renderList(data)
+    }
 }
 
-function renderLoading(){
-  return (<ActivityIndicator size="large" color="#0000ff" />)
+function renderLoading() {
+    return (<ActivityIndicator size="large" color="#0000ff" />)
 }
 
-function renderList(data){
-  return(
-    <FlatList
-      data={data}
-      keyExtractor={({ id }) => id.toString()}
-      renderItem={renderItem}
-    />)
+function renderList(data) {
+    return (
+        <FlatList
+            data={data}
+            keyExtractor={({ id }) => id.toString()}
+            renderItem={renderItem}
+        />)
 }
 
 export default ResultScreen = ({ route, navigation }) => {
     const { genre } = route.params;
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState();
-    
-    {/* TODO feedback error using dialog */}
+
+    {/* TODO feedback error using dialog */ }
     useEffect(() => {
         fetch(`https://www.freetogame.com/api/games?category=${genre}`)
             .then((response) => response.json())
@@ -59,9 +60,9 @@ export default ResultScreen = ({ route, navigation }) => {
     }, []);
 
     return (
-        <ImageBackground source={require('../img/imgbground.png')} style={styles.bgImg} imageStyle={{opacity:0.9}}>
+        <ImageBackground source={require('../img/imgbground.png')} style={styles.bgImg} imageStyle={{ opacity: 0.9 }}>
             <View style={styles.container}>{
-              renderContent(isLoading, data)
+                renderContent(isLoading, data)
             }
             </View>
         </ImageBackground>
@@ -70,7 +71,7 @@ export default ResultScreen = ({ route, navigation }) => {
 
 const styles = StyleSheet.create({
     bgImg: {
-      flex: 1
+        flex: 1
     },
     container: {
         flex: 1,

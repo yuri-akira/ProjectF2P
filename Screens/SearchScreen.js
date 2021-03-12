@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 
 export default function SearchScreen({ navigation }) {
-    
+
     const [category, setCategory] = useState();
 
     return (
@@ -21,11 +21,11 @@ export default function SearchScreen({ navigation }) {
                     source={require('../img/freetogame-logo.png')}
                     style={styles.logo}
                 />
-                <CategorySelector onCategoryChangedListener = { (category) => setCategory(category)  } />
+                <CategorySelector onCategoryChangedListener={(category) => setCategory(category)} />
                 <TouchableHighlight style={styles.btnSearch}
                     underlayColor="#750f04"
                     onPress={() => navigation.navigate('Results', {
-                        genre : category
+                        genre: category
                     })}>
                     <Text style={{ color: '#ffff' }}>Search</Text>
                 </TouchableHighlight>
