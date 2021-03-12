@@ -17,7 +17,10 @@ export default ResultScreen = ({ route, navigation }) => {
     const [data, setData] = useState();
 
     const renderItem = ({ item }) => (
-        <TouchableHighlight>
+        <TouchableHighlight
+            onPress={() => navigation.navigate('Details', {
+                gameId : item.id
+            })} >
             <View style={styles.card}>
                 <Image
                     source={{ uri: item.thumbnail }}
