@@ -7,7 +7,8 @@ import {
     Image,
     StyleSheet,
     ImageBackground,
-    TouchableHighlight
+    TouchableHighlight,
+    Alert
 } from 'react-native';
 
 export default ResultScreen = ({ route, navigation }) => {
@@ -36,11 +37,11 @@ export default ResultScreen = ({ route, navigation }) => {
             return renderList();
         }
     }
-    
+
     function renderLoading() {
         return (<ActivityIndicator size="large" color="#0000ff" />)
     }
-    
+
     function renderList() {
         return (
             <FlatList
@@ -51,12 +52,19 @@ export default ResultScreen = ({ route, navigation }) => {
         )
     }
 
-    {/* TODO feedback error using dialog */ }
     useEffect(() => {
         fetch(`https://www.freetogame.com/api/games?category=${genre}`)
             .then((response) => response.json())
             .then((json) => setData(json))
-            .catch((error) => console.error(error))
+            .catch((error) =>
+                Alert.alert(
+                    'Error',
+                    'Sorry, something went wrong. Please try again later',
+                    [
+                        { text: "OK", onPress: () => navigation.goBack() }
+                    ],
+                    { cancelable: false }
+                ))
             .finally(() => setLoading(false));
     }, []);
 
@@ -69,6 +77,7 @@ export default ResultScreen = ({ route, navigation }) => {
         </ImageBackground>
     );
 };
+
 
 const styles = StyleSheet.create({
     bgImg: {
