@@ -48,7 +48,8 @@ export default ResultScreen = ({ route, navigation }) => {
     const { genre } = route.params;
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState();
-
+    
+    {/* TODO feedback error using dialog */}
     useEffect(() => {
         fetch(`https://www.freetogame.com/api/games?category=${genre}`)
             .then((response) => response.json())
