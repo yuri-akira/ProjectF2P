@@ -7,7 +7,7 @@ import {
     Image,
     StyleSheet,
     ImageBackground,
-    TouchableHighlight,
+    TouchableOpacity,
     Alert
 } from 'react-native';
 
@@ -17,7 +17,8 @@ export default ResultScreen = ({ route, navigation }) => {
     const [data, setData] = useState();
 
     const renderItem = ({ item }) => (
-        <TouchableHighlight
+        <TouchableOpacity
+            activeOpacity={0.85}
             onPress={() => navigation.navigate('Details', {
                 gameId : item.id
             })} >
@@ -30,7 +31,7 @@ export default ResultScreen = ({ route, navigation }) => {
                 <Text style={styles.fontDescription}>{item.short_description}</Text>
                 <Text style={styles.fontPlatform}>{item.platform}</Text>
             </View>
-        </TouchableHighlight>
+        </TouchableOpacity>
     )
 
     function renderContent() {
