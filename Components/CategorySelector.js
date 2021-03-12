@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     View,
     StyleSheet
@@ -8,7 +8,11 @@ import { Picker } from '@react-native-picker/picker';
 export default function CategorySelector( props ) {
 
     const [selectedCategory, setSelectedCategory] = useState('mmorpg');
-    props.funcGetCategory(selectedCategory)
+
+    useEffect(() =>{
+        if (props.funcGetCategory) 
+            props.funcGetCategory(selectedCategory)
+    }, [selectedCategory]);
 
     return (
         <View style={styles.pickerContainer}>
