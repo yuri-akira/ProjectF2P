@@ -10,45 +10,46 @@ import {
     TouchableHighlight
 } from 'react-native';
 
-const renderItem = ({ item }) => (
-    <TouchableHighlight>
-        <View style={styles.card}>
-            <Image
-                source={{ uri: item.thumbnail }}
-                style={styles.cardImg}
-            />
-            <Text style={styles.fontTitle}>{item.title}</Text>
-            <Text style={styles.fontDescription}>{item.short_description}</Text>
-            <Text style={styles.fontPlatform}>{item.platform}</Text>
-        </View>
-    </TouchableHighlight>
-)
-
-function renderContent(isLoading, data) {
-    if (isLoading) {
-        return renderLoading();
-    } else {
-        return renderList(data)
-    }
-}
-
-function renderLoading() {
-    return (<ActivityIndicator size="large" color="#0000ff" />)
-}
-
-function renderList(data) {
-    return (
-        <FlatList
-            data={data}
-            keyExtractor={({ id }) => id.toString()}
-            renderItem={renderItem}
-        />)
-}
-
 export default ResultScreen = ({ route, navigation }) => {
     const { genre } = route.params;
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState();
+
+    const renderItem = ({ item }) => (
+        <TouchableHighlight>
+            <View style={styles.card}>
+                <Image
+                    source={{ uri: item.thumbnail }}
+                    style={styles.cardImg}
+                />
+                <Text style={styles.fontTitle}>{item.title}</Text>
+                <Text style={styles.fontDescription}>{item.short_description}</Text>
+                <Text style={styles.fontPlatform}>{item.platform}</Text>
+            </View>
+        </TouchableHighlight>
+    )
+
+    function renderContent() {
+        if (isLoading) {
+            return renderLoading();
+        } else {
+            return renderList();
+        }
+    }
+    
+    function renderLoading() {
+        return (<ActivityIndicator size="large" color="#0000ff" />)
+    }
+    
+    function renderList() {
+        return (
+            <FlatList
+                data={data}
+                keyExtractor={({ id }) => id.toString()}
+                renderItem={renderItem}
+            />
+        )
+    }
 
     {/* TODO feedback error using dialog */ }
     useEffect(() => {
