@@ -1,17 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     View,
     StyleSheet
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
-export default function Select() {
+export default function CategorySelector( props ) {
 
-    const [category, setCategory] = useState(
-        ['mmorpg', 'shooter', 'strategy', 'sports', 'survival']
-    );
+    const [selectedCategory, setSelectedCategory] = useState('mmorpg');
 
-    const [selectedCategory, setSelectedCategory] = useState([]);
+    useEffect(() =>{
+        if (props.onCategoryChangedListener){
+            props.onCategoryChangedListener(selectedCategory)
+        }
+    }, [selectedCategory]);
+
     return (
         <View style={styles.pickerContainer}>
             <Picker
@@ -29,7 +32,7 @@ export default function Select() {
                 <Picker.Item label='Survival' value='survival' />
             </Picker>
         </View>
-    )
+    )   
 }
 
 const styles = StyleSheet.create({

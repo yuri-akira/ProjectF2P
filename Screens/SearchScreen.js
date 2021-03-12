@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CategorySelector from '../Components/CategorySelector';
 
 import {
@@ -10,8 +10,10 @@ import {
     TouchableHighlight
 } from 'react-native';
 
+export default function SearchScreen({ navigation }) {
 
-export default function SearchScreen() {
+    const [category, setCategory] = useState();
+
     return (
         <ImageBackground source={require('../img/imgbground.png')} style={styles.bgImg}>
             <View style={styles.container}>
@@ -19,11 +21,14 @@ export default function SearchScreen() {
                     source={require('../img/freetogame-logo.png')}
                     style={styles.logo}
                 />
-                <CategorySelector/>
-                <TouchableHighlight style={styles.btnSearch} underlayColor="#750f04">
+                <CategorySelector onCategoryChangedListener={(category) => setCategory(category)} />
+                <TouchableHighlight style={styles.btnSearch}
+                    underlayColor="#750f04"
+                    onPress={() => navigation.navigate('Results', {
+                        genre: category
+                    })}>
                     <Text style={{ color: '#ffff' }}>Search</Text>
                 </TouchableHighlight>
-
             </View>
         </ImageBackground>
     )
@@ -37,8 +42,7 @@ const styles = StyleSheet.create({
         resizeMode: 'contain'
     },
     bgImg: {
-        width: '100%',
-        height: '100%'
+        flex: 1
     },
     container: {
         alignItems: 'center',
