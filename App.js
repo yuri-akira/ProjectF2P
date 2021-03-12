@@ -10,7 +10,6 @@ const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    // TODO Stack.Screen for the Details Screen 
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
