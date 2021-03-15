@@ -60,7 +60,7 @@ export default ResultScreen = ({ route, navigation }) => {
         fetch(`https://www.freetogame.com/api/games?category=${genre}`)
             .then((response) => response.json())
             .then((json) => setData(json))
-            .catch((error) =>
+            .catch(() =>
                 Alert.alert(
                     'Error',
                     'Sorry, something went wrong. Please try again later',
@@ -75,7 +75,7 @@ export default ResultScreen = ({ route, navigation }) => {
     return (
         <ImageBackground source={require('../img/imgbground.png')} style={styles.bgImg} imageStyle={{ opacity: 0.9 }}>
             <View style={styles.container}>{
-                renderContent(isLoading, data)
+                renderContent()
             }
             </View>
         </ImageBackground>
