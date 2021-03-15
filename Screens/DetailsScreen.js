@@ -36,7 +36,6 @@ export default ResultScreen = ({ route, navigation }) => {
         fetch(`https://www.freetogame.com/api/game?id=${gameId}`)
             .then((response) => response.json())
             .then((json) => setData(json))
-
             .catch(() =>
                 Alert.alert(
                     'Error',
