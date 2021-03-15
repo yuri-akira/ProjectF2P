@@ -44,29 +44,36 @@ export default ResultScreen = ({ route, navigation }) => {
         return (<ActivityIndicator size="large" color="#0000ff" />)
     }
 
+    function renderStatus() {
+        if(data.status === 'Live'){
+            return (<Text style={styles.gameStatusGreen}>{data.status}</Text>)
+        } else {
+            return (<Text style={styles.gameStatusRed}>{data.status}</Text>)
+        }
+    }
+
     function renderData() {
         return (
             <ScrollView style={styles.scrollView} >
                 <Text style={styles.fontTitle}>{data.title}</Text>
-                {data.status === 'Live' ? 
-                    <Text style={styles.gameStatusGreen}>{data.status}</Text> :
-                    <Text style={styles.gameStatusRed}>{data.status}</Text>
-                }
+                {renderStatus()}
                 <Image
                     source={{ uri: data.thumbnail }}
                     style={styles.coverImg}
                 />
                 <View style={styles.container}>
                     <Text style={styles.fontDescription}>{data.description}</Text>
-                    <Text>{`Genre: ${data.genre}`}</Text>
-                    <Text>{`Platform: ${data.platform}`}</Text>
-                    <Text>{`Publisher: ${data.publisher}`}</Text>
-                    <Text>{`Developer: ${data.developer}`}</Text>
-                    <Text>{`Releas Date: ${data.release_date}`}</Text>
-                    <Text style={styles.gameUrl}
-                        onPress={() => Linking.openURL(data.game_url)}>
-                        {`Get ${data.title} here!`}
-                    </Text>
+                    <View style={styles.aditionalDataContainer}>
+                        <Text>{`Genre: ${data.genre}`}</Text>
+                        <Text>{`Platform: ${data.platform}`}</Text>
+                        <Text>{`Publisher: ${data.publisher}`}</Text>
+                        <Text>{`Developer: ${data.developer}`}</Text>
+                        <Text>{`Releas Date: ${data.release_date}`}</Text>
+                        <Text style={styles.gameUrl}
+                            onPress={() => Linking.openURL(data.game_url)}>
+                            {`Get ${data.title} here!`}
+                        </Text>
+                    </View>
                 </View>
             </ScrollView>
         )
@@ -100,7 +107,7 @@ const styles = StyleSheet.create({
     coverImg: {
         height: 300,
         width: 400,
-        resizeMode: 'contain'
+        resizeMode: 'contain',
     },
     container: {
         justifyContent: 'center',
@@ -108,7 +115,11 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 15,
     },
+    aditionalDataContainer: {
+        padding: 5,
+    },
     gameUrl: {
+        marginVertical: 3,
         fontSize: 16,
         color: '#b0cfff',
         textDecorationLine: 'underline',
@@ -125,5 +136,5 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 13,
         color: '#ff0008'
-    },
+    }
 })
