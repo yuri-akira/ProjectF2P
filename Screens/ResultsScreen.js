@@ -16,6 +16,22 @@ export default ResultScreen = ({ route, navigation }) => {
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState();
 
+    useEffect(() => {
+        fetch(`https://www.freetogame.com/api/games?category=${genre}`)
+            .then((response) => response.json())
+            .then((json) => setData(json))
+            .catch(() =>
+                Alert.alert(
+                    'Error',
+                    'Sorry, something went wrong. Please try again later',
+                    [
+                        { text: "OK", onPress: () => navigation.goBack() }
+                    ],
+                    { cancelable: false }
+                ))
+            .finally(() => setLoading(false));
+    }, []);
+
     const renderItem = ({ item }) => (
         <TouchableOpacity
             activeOpacity={0.85}
@@ -55,22 +71,6 @@ export default ResultScreen = ({ route, navigation }) => {
             />
         )
     }
-
-    useEffect(() => {
-        fetch(`https://www.freetogame.com/api/games?category=${genre}`)
-            .then((response) => response.json())
-            .then((json) => setData(json))
-            .catch(() =>
-                Alert.alert(
-                    'Error',
-                    'Sorry, something went wrong. Please try again later',
-                    [
-                        { text: "OK", onPress: () => navigation.goBack() }
-                    ],
-                    { cancelable: false }
-                ))
-            .finally(() => setLoading(false));
-    }, []);
 
     return (
         <ImageBackground source={require('../img/imgbground.png')} style={styles.bgImg} imageStyle={{ opacity: 0.9 }}>
