@@ -7,6 +7,7 @@ import {
     StyleSheet,
     ImageBackground,
     ScrollView,
+    Linking,
     Alert
 } from 'react-native';
 
@@ -46,13 +47,23 @@ export default ResultScreen = ({ route, navigation }) => {
     function renderData() {
         return (
             <ScrollView style={styles.scrollView} >
+                <Text style={styles.fontTitle}>{data.title}</Text>
+                <Text style={{ textAlign: 'center' }}>{data.status}</Text>
+                <Image
+                    source={{ uri: data.thumbnail }}
+                    style={styles.coverImg}
+                />
                 <View style={styles.container}>
-                    <Text>{data.title}</Text>
-                    <Image
-                        source={{ uri: data.thumbnail }}
-                        style={styles.coverImg}
-                    />
-                    <Text>{data.thumbnail}</Text>
+                    <Text style={styles.fontDescription}>{data.description}</Text>
+                    <Text>{`Genre: ${data.genre}`}</Text>
+                    <Text>{`Platform: ${data.platform}`}</Text>
+                    <Text>{`Publisher: ${data.publisher}`}</Text>
+                    <Text>{`Developer: ${data.developer}`}</Text>
+                    <Text>{`Releas Date: ${data.release_date}`}</Text>
+                    <Text style={styles.gameUrl}
+                        onPress={() => Linking.openURL(data.game_url)}>
+                        {`Get ${data.title} here!`}
+                    </Text>
                 </View>
             </ScrollView>
         )
@@ -71,14 +82,34 @@ const styles = StyleSheet.create({
         flex: 1
     },
     scrollView: {
-        margin: 10,
+        margin: 15,
+    },
+    fontTitle: {
+        fontSize: 25,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        color: '#ffff'
+    },
+    fontDescription: {
+        color: '#ffff',
+        fontSize: 17,
+        textAlign: 'justify'
     },
     coverImg: {
         height: 300,
         width: 400,
         resizeMode: 'contain'
     },
-    container:{
-        justifyContent: 'center'
+    container: {
+        justifyContent: 'center',
+        backgroundColor: 'rgba(44, 62, 80, 0.9)',
+        paddingVertical: 10,
+        paddingHorizontal: 15,
+    },
+    gameUrl: {
+        fontSize: 16,
+        color: '#b0cfff',
+        textDecorationLine: 'underline',
+        textAlign: 'center'
     }
 })
