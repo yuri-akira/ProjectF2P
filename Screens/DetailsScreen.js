@@ -32,7 +32,22 @@ export default ResultScreen = ({ route, navigation }) => {
             </ScrollView>
         )
     }
-    //TODO get data from API
+    useEffect(() => {
+        fetch(`https://www.freetogame.com/api/game?id=${gameId}`)
+            .then((response) => response.json())
+            .then((json) => setData(json))
+
+            .catch(() =>
+                Alert.alert(
+                    'Error',
+                    'Sorry, something went wrong. Please try again later',
+                    [
+                        { text: "OK", onPress: () => navigation.goBack() }
+                    ],
+                    { cancelable: false }
+                ))
+            .finally(() => setLoading(false));
+    }, []);
 
     return (
         <ImageBackground source={require('../img/imgbground.png')} style={styles.bgImg} imageStyle={{ opacity: 0.9 }}>
