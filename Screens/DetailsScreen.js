@@ -46,9 +46,9 @@ export default ResultScreen = ({ route, navigation }) => {
 
     function renderStatus() {
         if (data.status === 'Live') {
-            return (<Text style={styles.gameStatusGreen}>{data.status}</Text>)
+            return (<Text style={[styles.gameStatus, {color: '#19fc00'}]}>{data.status}</Text>)
         } else {
-            return (<Text style={styles.gameStatusRed}>{data.status}</Text>)
+            return (<Text style={[styles.gameStatus, {color: '#ff0008'}]}>{data.status}</Text>)
         }
     }
 
@@ -69,7 +69,7 @@ export default ResultScreen = ({ route, navigation }) => {
                         <Text style={styles.fontData}>{`Platform: ${data.platform}`}</Text>
                         <Text style={styles.fontData}>{`Publisher: ${data.publisher}`}</Text>
                         <Text style={styles.fontData}>{`Developer: ${data.developer}`}</Text>
-                        <Text style={styles.fontData}>{`Releas Date: ${data.release_date}`}</Text>
+                        <Text style={styles.fontData}>{`Release Date: ${data.release_date}`}</Text>
                     </View>
                     <Text style={styles.gameUrl}
                         onPress={() => Linking.openURL(data.game_url)}>
@@ -110,47 +110,40 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold',
         color: '#ffff',
-        marginBottom: 3,
+        marginBottom: 3
     },
     fontData: {
         color: '#ffff',
         fontSize: 15,
-        textAlign: 'left',
-        paddingBottom: 3,
+        padding: 7,
+        textAlign: 'left'
     },
     coverImg: {
         height: 300,
         width: 400,
-        resizeMode: 'contain',
+        resizeMode: 'contain'
     },
     container: {
         justifyContent: 'center',
         backgroundColor: 'rgba(44, 62, 80, 0.9)',
         paddingVertical: 10,
-        paddingHorizontal: 15,
+        paddingHorizontal: 15
     },
     techDataContainer: {
         marginTop: 5,
-        padding: 5,
-        backgroundColor: 'rgba(132, 207, 232, 0.1)',
+        padding: 10,
+        backgroundColor: 'rgba(132, 207, 232, 0.1)'
     },
     gameUrl: {
-        marginVertical: 3,
+        margin: 5,
         fontSize: 16,
         color: '#b0cfff',
         textDecorationLine: 'underline',
         textAlign: 'center'
     },
-    gameStatusGreen: {
+    gameStatus: {
         textAlign: 'center',
         fontWeight: 'bold',
-        fontSize: 13,
-        color: '#19fc00'
-    },
-    gameStatusRed: {
-        textAlign: 'center',
-        fontWeight: 'bold',
-        fontSize: 13,
-        color: '#ff0008'
+        fontSize: 13
     }
 })
