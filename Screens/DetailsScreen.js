@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {
     ActivityIndicator,
     Text,
+    View,
     Image,
     StyleSheet,
     ImageBackground,
@@ -14,24 +15,6 @@ export default ResultScreen = ({ route, navigation }) => {
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState();
 
-    function renderContent() {
-        if (isLoading) {
-            return renderLoading();
-        } else {
-            return renderData();
-        }
-    }
-
-    function renderLoading() {
-        return (<ActivityIndicator size="large" color="#0000ff" />)
-    }
-    function renderData() {
-        return (
-            <ScrollView style={styles.scrollView} >
-                {/* TODO insert data*/}
-            </ScrollView>
-        )
-    }
     useEffect(() => {
         fetch(`https://www.freetogame.com/api/game?id=${gameId}`)
             .then((response) => response.json())
@@ -48,6 +31,33 @@ export default ResultScreen = ({ route, navigation }) => {
             .finally(() => setLoading(false));
     }, []);
 
+    function renderContent() {
+        if (isLoading) {
+            return renderLoading();
+        } else {
+            return renderData();
+        }
+    }
+
+    function renderLoading() {
+        return (<ActivityIndicator size="large" color="#0000ff" />)
+    }
+
+    function renderData() {
+        return (
+            <ScrollView style={styles.scrollView} >
+                <View style={styles.container}>
+                    <Text>{data.title}</Text>
+                    <Image
+                        source={{ uri: data.thumbnail }}
+                        style={styles.coverImg}
+                    />
+                    <Text>{data.thumbnail}</Text>
+                </View>
+            </ScrollView>
+        )
+    }
+
     return (
         <ImageBackground source={require('../img/imgbground.png')} style={styles.bgImg} imageStyle={{ opacity: 0.9 }}>
             { renderContent()}
@@ -61,6 +71,14 @@ const styles = StyleSheet.create({
         flex: 1
     },
     scrollView: {
-        margin: 10
+        margin: 10,
+    },
+    coverImg: {
+        height: 300,
+        width: 400,
+        resizeMode: 'contain'
+    },
+    container:{
+        justifyContent: 'center'
     }
 })
