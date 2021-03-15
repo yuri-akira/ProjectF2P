@@ -48,7 +48,10 @@ export default ResultScreen = ({ route, navigation }) => {
         return (
             <ScrollView style={styles.scrollView} >
                 <Text style={styles.fontTitle}>{data.title}</Text>
-                <Text style={{ textAlign: 'center' }}>{data.status}</Text>
+                {data.status === 'Live' ? 
+                    <Text style={styles.gameStatusGreen}>{data.status}</Text> :
+                    <Text style={styles.gameStatusRed}>{data.status}</Text>
+                }
                 <Image
                     source={{ uri: data.thumbnail }}
                     style={styles.coverImg}
@@ -75,7 +78,6 @@ export default ResultScreen = ({ route, navigation }) => {
         </ImageBackground>
     );
 };
-
 
 const styles = StyleSheet.create({
     bgImg: {
@@ -111,5 +113,17 @@ const styles = StyleSheet.create({
         color: '#b0cfff',
         textDecorationLine: 'underline',
         textAlign: 'center'
-    }
+    },
+    gameStatusGreen: {
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 13,
+        color: '#19fc00'
+    },
+    gameStatusRed: {
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 13,
+        color: '#ff0008'
+    },
 })
