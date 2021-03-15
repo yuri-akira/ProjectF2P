@@ -45,7 +45,7 @@ export default ResultScreen = ({ route, navigation }) => {
     }
 
     function renderStatus() {
-        if(data.status === 'Live'){
+        if (data.status === 'Live') {
             return (<Text style={styles.gameStatusGreen}>{data.status}</Text>)
         } else {
             return (<Text style={styles.gameStatusRed}>{data.status}</Text>)
@@ -63,17 +63,18 @@ export default ResultScreen = ({ route, navigation }) => {
                 />
                 <View style={styles.container}>
                     <Text style={styles.fontDescription}>{data.description}</Text>
-                    <View style={styles.aditionalDataContainer}>
-                        <Text>{`Genre: ${data.genre}`}</Text>
-                        <Text>{`Platform: ${data.platform}`}</Text>
-                        <Text>{`Publisher: ${data.publisher}`}</Text>
-                        <Text>{`Developer: ${data.developer}`}</Text>
-                        <Text>{`Releas Date: ${data.release_date}`}</Text>
-                        <Text style={styles.gameUrl}
-                            onPress={() => Linking.openURL(data.game_url)}>
-                            {`Get ${data.title} here!`}
-                        </Text>
+                    <View style={styles.techDataContainer}>
+                        <Text style={styles.fontSmallerTitle}>Technical information</Text>
+                        <Text style={styles.fontData}>{`Genre: ${data.genre}`}</Text>
+                        <Text style={styles.fontData}>{`Platform: ${data.platform}`}</Text>
+                        <Text style={styles.fontData}>{`Publisher: ${data.publisher}`}</Text>
+                        <Text style={styles.fontData}>{`Developer: ${data.developer}`}</Text>
+                        <Text style={styles.fontData}>{`Releas Date: ${data.release_date}`}</Text>
                     </View>
+                    <Text style={styles.gameUrl}
+                        onPress={() => Linking.openURL(data.game_url)}>
+                        {`Get ${data.title} here!`}
+                    </Text>
                 </View>
             </ScrollView>
         )
@@ -104,6 +105,19 @@ const styles = StyleSheet.create({
         fontSize: 17,
         textAlign: 'justify'
     },
+    fontSmallerTitle: {
+        fontSize: 17,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        color: '#ffff',
+        marginBottom: 3,
+    },
+    fontData: {
+        color: '#ffff',
+        fontSize: 15,
+        textAlign: 'left',
+        paddingBottom: 3,
+    },
     coverImg: {
         height: 300,
         width: 400,
@@ -115,8 +129,10 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 15,
     },
-    aditionalDataContainer: {
+    techDataContainer: {
+        marginTop: 5,
         padding: 5,
+        backgroundColor: 'rgba(132, 207, 232, 0.1)',
     },
     gameUrl: {
         marginVertical: 3,
