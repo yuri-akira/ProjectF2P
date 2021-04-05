@@ -85,7 +85,8 @@ export default ResultScreen = ({ route, navigation }) => {
 
 const styles = StyleSheet.create({
     bgImg: {
-        flex: 1
+        flex: 1,
+        justifyContent: 'center',
     },
     container: {
         flex: 1,

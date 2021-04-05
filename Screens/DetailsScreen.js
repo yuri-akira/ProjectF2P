@@ -89,7 +89,9 @@ export default ResultScreen = ({ route, navigation }) => {
 
 const styles = StyleSheet.create({
     bgImg: {
-        flex: 1
+        flex: 1,
+        justifyContent: 'center',
+
     },
     scrollView: {
         margin: 15,
@@ -135,7 +137,6 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: 20,
     },
     techDataContainer: {
-        marginTop: 5,
         padding: 10,
         borderRadius: 10,
         backgroundColor: 'rgba(132, 207, 232, 0.1)'
