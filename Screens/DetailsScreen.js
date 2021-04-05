@@ -41,7 +41,7 @@ export default ResultScreen = ({ route, navigation }) => {
     }
 
     function renderLoading() {
-        return (<ActivityIndicator size="large" color="#0000ff" />)
+        return (<ActivityIndicator size="large" color="#FFFF" />)
     }
 
     function renderStatus() {
