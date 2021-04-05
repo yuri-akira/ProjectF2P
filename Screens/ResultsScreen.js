@@ -95,13 +95,14 @@ const styles = StyleSheet.create({
     cardImg: {
         flex: 1,
         height: 100,
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
         resizeMode: 'cover'
     },
     card: {
         backgroundColor: '#ffff',
         marginVertical: 10,
-        borderWidth: 2,
-        borderRadius: 5,
+        borderRadius: 10,
     },
     fontTitle: {
         fontSize: 25,

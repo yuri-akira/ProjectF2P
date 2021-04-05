@@ -119,19 +119,25 @@ const styles = StyleSheet.create({
         textAlign: 'left'
     },
     coverImg: {
-        height: 300,
-        width: 400,
-        resizeMode: 'contain'
+        flex: 1,
+        marginTop: 10,
+        height: 250,
+        borderTopRightRadius: 20,
+        borderTopLeftRadius: 20,
+        resizeMode: 'cover'
     },
     container: {
         justifyContent: 'center',
         backgroundColor: 'rgba(44, 62, 80, 0.9)',
         paddingVertical: 10,
-        paddingHorizontal: 15
+        paddingHorizontal: 15,
+        borderBottomLeftRadius: 20,
+        borderBottomRightRadius: 20,
     },
     techDataContainer: {
         marginTop: 5,
         padding: 10,
+        borderRadius: 10,
         backgroundColor: 'rgba(132, 207, 232, 0.1)'
     },
     gameUrl: {
