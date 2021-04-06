@@ -101,23 +101,26 @@ const styles = StyleSheet.create({
         resizeMode: 'cover'
     },
     card: {
-        backgroundColor: '#ffff',
+        backgroundColor: '#212121',
         marginVertical: 10,
         borderRadius: 10,
     },
     fontTitle: {
         fontSize: 25,
         textAlign: 'center',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color: '#ffff',
     },
     fontDescription: {
         marginVertical: 5,
         marginHorizontal: 15,
         textAlign: 'justify',
+        color: '#ffff',
         fontSize: 17
     },
     fontPlatform: {
         marginHorizontal: 15,
+        color: '#ffff',
         marginBottom: 10
     }
 })
