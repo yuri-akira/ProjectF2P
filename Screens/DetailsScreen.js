@@ -9,7 +9,6 @@ import {
     ScrollView,
     Linking,
     Alert,
-    FlatList
 } from 'react-native';
 
 export default ResultScreen = ({ route, navigation }) => {
@@ -30,74 +29,58 @@ export default ResultScreen = ({ route, navigation }) => {
                     'Error',
                     'Sorry, something went wrong. Please try again later',
                     [
-                        { text: "OK", onPress: () => navigation.goBack() }
+                        {
+                            text: "OK",
+                            onPress: () => navigation.navigate('Search Screen')
+                        }
                     ],
                     { cancelable: false }
                 ))
             .finally(() => setLoading(false));
     }, []);
 
-    function renderScreenshot() {
-        switch (screenshots.length) {
-            case 1:
-                return (
-                    <View>
-                            <Text style={styles.fontSmallerTitle}>Screenshots</Text>
-                            <Image
-                                source={{ uri: screenshots[0].image }}
-                                style={styles.screenshotImg}
-                            />
-                    </View>
-                )
-            case 2:
-                return (
-                    <View>
-                            <Text style={styles.fontSmallerTitle}>Screenshots</Text>
-                            <Image
-                                source={{ uri: screenshots[0].image }}
-                                style={styles.screenshotImg}
-                            />
-                            <Image
-                                source={{ uri: screenshots[1].image }}
-                                style={styles.screenshotImg}
-                            />
-                    </View>
-                )
-            case 3:
-                return (
-                    <View>
-                            <Text style={styles.fontSmallerTitle}>Screenshots</Text>
-                            <Image
-                                source={{ uri: screenshots[0].image }}
-                                style={styles.screenshotImg}
-                            />
-                            <Image
-                                source={{ uri: screenshots[1].image }}
-                                style={styles.screenshotImg}
-                            />
-                            <Image
-                                source={{ uri: screenshots[2].image }}
-                                style={styles.screenshotImg}
-                            />
-                    </View>
-                )
-        }
-        if (screenshots.length > 0) {
+    function renderScreenshots() {
+        if (screenshots.length >= 3) {
             return (
-                <View>
-                        <Text style={styles.fontSmallerTitle}>Screenshots</Text>
-                        <Image
-                            source={{ uri: screenshots[0].image }}
-                            style={styles.screenshotImg}
-                        />
-                        <Image
-                            source={{ uri: screenshots[1].image }}
-                            style={styles.screenshotImg}
-                        />
-                        <Image
-                            source={{ uri: screenshots[2].image }}
-                            style={styles.screenshotImg}
-                        />
+                <View style={styles.techDataContainer}>
+                    <Text style={styles.fontSmallerTitle}>Screenshots</Text>
+                    <Image
+                        source={{ uri: screenshots[0].image }}
+                        style={styles.screenshotImg}
+                    />
+                    <Image
+                        source={{ uri: screenshots[1].image }}
+                        style={styles.screenshotImg}
+                    />
+                    <Image
+                        source={{ uri: screenshots[2].image }}
+                        style={styles.screenshotImg}
+                    />
+                </View>
+            )
+        } else if (screenshots.length == 2) {
+            return (
+                <View style={styles.techDataContainer}>
+                    <Text style={styles.fontSmallerTitle}>Screenshots</Text>
+                    <Image
+                        source={{ uri: screenshots[0].image }}
+                        style={styles.screenshotImg}
+                    />
+                    <Image
+                        source={{ uri: screenshots[1].image }}
+                        style={styles.screenshotImg}
+                    />
+                </View>
+            )
+        }
+        else if (screenshots.length == 1) {
+            return (
+                <View style={styles.techDataContainer}>
+                    <Text style={styles.fontSmallerTitle}>Screenshots</Text>
+                    <Image
+                        source={{ uri: screenshots[0].image }}
+                        style={styles.screenshotImg}
+                    />
                 </View>
             )
         }
@@ -111,15 +94,38 @@ export default ResultScreen = ({ route, navigation }) => {
         }
     }
 
+    function renderFooterContent() {
+        if (isLoading) {
+            return renderLoading();
+        } else {
+            return renderScreenshots();
+        }
+    }
+
     function renderLoading() {
         return (<ActivityIndicator size="large" color="#FFFF" />)
     }
 
     function renderStatus() {
         if (data.status === 'Live') {
-            return (<Text style={[styles.gameStatus, { color: '#19fc00' }]}>{data.status}</Text>)
+            return (<Text style={[styles.gameStatus, { color: '#32bf49' }]}>{data.status}</Text>)
         } else {
-            return (<Text style={[styles.gameStatus, { color: '#ff0008' }]}>{data.status}</Text>)
+            return (<Text style={[styles.gameStatus, { color: '#b52438' }]}>{data.status}</Text>)
+        }
+    }
+
+    function renderMinRequirements() {
+        if (data.minimum_system_requirements && data.minimum_system_requirements.memory != null) {
+            return (
+                <View style={styles.techDataContainer}>
+                    <Text style={styles.fontSmallerTitle}>Minimum Requirements</Text>
+                    <Text style={styles.fontData}>{`OS: ${data.minimum_system_requirements.os}`}</Text>
+                    <Text style={styles.fontData}>{data.minimum_system_requirements.processor}</Text>
+                    <Text style={styles.fontData}>{`Memory: ${data.minimum_system_requirements.memory}`}</Text>
+                    <Text style={styles.fontData}>{data.minimum_system_requirements.graphics}</Text>
+                    <Text style={styles.fontData}>{data.minimum_system_requirements.storage}</Text>
+                </View>
+            )
         }
     }
 
@@ -134,13 +140,9 @@ export default ResultScreen = ({ route, navigation }) => {
                 />
                 <View style={styles.container}>
                     <Text style={styles.fontDescription}>{data.description}</Text>
-                    <View style={styles.techDataContainer}>
-                        <Text style={styles.fontSmallerTitle}>Minimum Requirements</Text>
-                        <Text style={styles.fontData}>{`OS: ${data.minimum_system_requirements.os}`}</Text>
-                        <Text style={styles.fontData}>{data.minimum_system_requirements.processor}</Text>
-                        <Text style={styles.fontData}>{`Memory: ${data.minimum_system_requirements.memory}`}</Text>
-                        <Text style={styles.fontData}>{data.minimum_system_requirements.graphics}</Text>
-                        <Text style={styles.fontData}>{data.minimum_system_requirements.storage}</Text>
+                    <View>{
+                        renderMinRequirements()
+                    }
                     </View>
                     <View style={styles.techDataContainer}>
                         <Text style={styles.fontSmallerTitle}>Technical information</Text>
@@ -150,8 +152,8 @@ export default ResultScreen = ({ route, navigation }) => {
                         <Text style={styles.fontData}>{`Developer: ${data.developer}`}</Text>
                         <Text style={styles.fontData}>{`Release Date: ${data.release_date}`}</Text>
                     </View>
-                    <View style={styles.techDataContainer}>{
-                        renderScreenshot()
+                    <View>{
+                        renderFooterContent()
                     }
                     </View>
                     <Text style={styles.gameUrl}
@@ -177,7 +179,7 @@ const styles = StyleSheet.create({
 
     },
     scrollView: {
-        backgroundColor: 'rgba(44, 62, 80, 0.9)',
+        backgroundColor: 'rgba(33, 33, 33, 0.9)',
     },
     fontTitle: {
         fontSize: 25,
@@ -204,8 +206,8 @@ const styles = StyleSheet.create({
         textAlign: 'left'
     },
     coverImg: {
-        flex: 1,
-        height: 250,
+        width: 400,
+        height: 300,
         resizeMode: 'contain'
     },
     screenshotImg: {
