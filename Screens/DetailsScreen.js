@@ -46,9 +46,9 @@ export default ResultScreen = ({ route, navigation }) => {
 
     function renderStatus() {
         if (data.status === 'Live') {
-            return (<Text style={[styles.gameStatus, {color: '#19fc00'}]}>{data.status}</Text>)
+            return (<Text style={[styles.gameStatus, { color: '#19fc00' }]}>{data.status}</Text>)
         } else {
-            return (<Text style={[styles.gameStatus, {color: '#ff0008'}]}>{data.status}</Text>)
+            return (<Text style={[styles.gameStatus, { color: '#ff0008' }]}>{data.status}</Text>)
         }
     }
 
@@ -64,6 +64,14 @@ export default ResultScreen = ({ route, navigation }) => {
                 <View style={styles.container}>
                     <Text style={styles.fontDescription}>{data.description}</Text>
                     <View style={styles.techDataContainer}>
+                        <Text style={styles.fontSmallerTitle}>Minimum Requirements</Text>
+                        <Text style={styles.fontData}>{`OS: ${data.minimum_system_requirements.os}`}</Text>
+                        <Text style={styles.fontData}>{data.minimum_system_requirements.processor}</Text>
+                        <Text style={styles.fontData}>{`Memory: ${data.minimum_system_requirements.memory}`}</Text>
+                        <Text style={styles.fontData}>{data.minimum_system_requirements.graphics}</Text>
+                        <Text style={styles.fontData}>{data.minimum_system_requirements.storage}</Text>
+                    </View>
+                    <View style={styles.techDataContainer}>
                         <Text style={styles.fontSmallerTitle}>Technical information</Text>
                         <Text style={styles.fontData}>{`Genre: ${data.genre}`}</Text>
                         <Text style={styles.fontData}>{`Platform: ${data.platform}`}</Text>
@@ -73,7 +81,7 @@ export default ResultScreen = ({ route, navigation }) => {
                     </View>
                     <Text style={styles.gameUrl}
                         onPress={() => Linking.openURL(data.game_url)}>
-                        {`Download ${data.title} here!`}
+                        {`${data.title} official website`}
                     </Text>
                 </View>
             </ScrollView>
@@ -122,9 +130,8 @@ const styles = StyleSheet.create({
     },
     coverImg: {
         flex: 1,
-        marginTop: 10,
         height: 250,
-        resizeMode: 'cover'
+        resizeMode: 'contain'
     },
     container: {
         flex: 1,
