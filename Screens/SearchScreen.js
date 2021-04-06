@@ -18,7 +18,7 @@ export default function SearchScreen({ navigation }) {
         <ImageBackground source={require('../img/imgbground.png')} style={styles.bgImg}>
             <View style={styles.container}>
                 <Image
-                    source={require('../img/freetogame-logo.png')}
+                    source={require('../img/logofirstscreen.png')}
                     style={styles.logo}
                 />
                 <CategorySelector onCategoryChangedListener={(category) => setCategory(category)} />
@@ -27,7 +27,7 @@ export default function SearchScreen({ navigation }) {
                     onPress={() => navigation.navigate('Results', {
                         genre: category
                     })}>
-                    <Text style={{ color: '#ffff' }}>Search</Text>
+                    <Text style={{ color: '#ffff', fontSize: 16 }}>Search</Text>
                 </TouchableHighlight>
             </View>
         </ImageBackground>
@@ -36,8 +36,9 @@ export default function SearchScreen({ navigation }) {
 
 const styles = StyleSheet.create({
     logo: {
-        width: 300,
-        height: 300,
+        width: 140,
+        height: 156,
+        marginBottom: 50,
         alignSelf: 'center',
         resizeMode: 'contain'
     },
@@ -45,6 +46,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     container: {
+        paddingTop: 100,
         alignItems: 'center',
     },
     btnSearch: {
@@ -52,7 +54,6 @@ const styles = StyleSheet.create({
         margin: 20,
         padding: 10,
         alignItems: 'center',
-        borderWidth: 1,
         borderRadius: 5,
         backgroundColor: '#b51c0b'
     }

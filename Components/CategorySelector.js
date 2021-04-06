@@ -38,6 +38,7 @@ export default function CategorySelector( props ) {
 const styles = StyleSheet.create({
     pickerContainer: {
         alignItems: 'center',
+        margin: 10,
         borderWidth: 3,
         borderRadius: 10,
         backgroundColor: '#fff'
