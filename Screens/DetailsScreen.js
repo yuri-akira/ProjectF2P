@@ -8,18 +8,23 @@ import {
     ImageBackground,
     ScrollView,
     Linking,
-    Alert
+    Alert,
+    FlatList
 } from 'react-native';
 
 export default ResultScreen = ({ route, navigation }) => {
     const { gameId } = route.params;
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState();
+    const [screenshots, setScreenshots] = useState();
 
     useEffect(() => {
         fetch(`https://www.freetogame.com/api/game?id=${gameId}`)
             .then((response) => response.json())
-            .then((json) => setData(json))
+            .then((json) => {
+                setData(json)
+                setScreenshots(json.screenshots)
+            })
             .catch(() =>
                 Alert.alert(
                     'Error',
@@ -31,6 +36,72 @@ export default ResultScreen = ({ route, navigation }) => {
                 ))
             .finally(() => setLoading(false));
     }, []);
+
+    function renderScreenshot() {
+        switch (screenshots.length) {
+            case 1:
+                return (
+                    <View>
+                            <Text style={styles.fontSmallerTitle}>Screenshots</Text>
+                            <Image
+                                source={{ uri: screenshots[0].image }}
+                                style={styles.screenshotImg}
+                            />
+                    </View>
+                )
+            case 2:
+                return (
+                    <View>
+                            <Text style={styles.fontSmallerTitle}>Screenshots</Text>
+                            <Image
+                                source={{ uri: screenshots[0].image }}
+                                style={styles.screenshotImg}
+                            />
+                            <Image
+                                source={{ uri: screenshots[1].image }}
+                                style={styles.screenshotImg}
+                            />
+                    </View>
+                )
+            case 3:
+                return (
+                    <View>
+                            <Text style={styles.fontSmallerTitle}>Screenshots</Text>
+                            <Image
+                                source={{ uri: screenshots[0].image }}
+                                style={styles.screenshotImg}
+                            />
+                            <Image
+                                source={{ uri: screenshots[1].image }}
+                                style={styles.screenshotImg}
+                            />
+                            <Image
+                                source={{ uri: screenshots[2].image }}
+                                style={styles.screenshotImg}
+                            />
+                    </View>
+                )
+        }
+        if (screenshots.length > 0) {
+            return (
+                <View>
+                        <Text style={styles.fontSmallerTitle}>Screenshots</Text>
+                        <Image
+                            source={{ uri: screenshots[0].image }}
+                            style={styles.screenshotImg}
+                        />
+                        <Image
+                            source={{ uri: screenshots[1].image }}
+                            style={styles.screenshotImg}
+                        />
+                        <Image
+                            source={{ uri: screenshots[2].image }}
+                            style={styles.screenshotImg}
+                        />
+                </View>
+            )
+        }
+    }
 
     function renderContent() {
         if (isLoading) {
@@ -78,6 +149,10 @@ export default ResultScreen = ({ route, navigation }) => {
                         <Text style={styles.fontData}>{`Publisher: ${data.publisher}`}</Text>
                         <Text style={styles.fontData}>{`Developer: ${data.developer}`}</Text>
                         <Text style={styles.fontData}>{`Release Date: ${data.release_date}`}</Text>
+                    </View>
+                    <View style={styles.techDataContainer}>{
+                        renderScreenshot()
+                    }
                     </View>
                     <Text style={styles.gameUrl}
                         onPress={() => Linking.openURL(data.game_url)}>
@@ -132,6 +207,12 @@ const styles = StyleSheet.create({
         flex: 1,
         height: 250,
         resizeMode: 'contain'
+    },
+    screenshotImg: {
+        flex: 1,
+        height: 200,
+        marginTop: 5,
+        resizeMode: 'cover',
     },
     container: {
         flex: 1,
