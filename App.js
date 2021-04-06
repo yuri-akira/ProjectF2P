@@ -20,10 +20,12 @@ export default function App() {
         <Stack.Screen
           name="Results"
           component={ResultScreen}
+          options={{ headerStyle: {backgroundColor: '#161e2b'}, headerTintColor: '#ffffff'}}
         />
         <Stack.Screen
           name="Details"
           component={DetailsScreen}
+          options={{ headerStyle: {backgroundColor: '#161e2b'}, headerTintColor: '#ffffff'}}
         />
       </Stack.Navigator>
     </NavigationContainer>

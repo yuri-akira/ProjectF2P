@@ -73,7 +73,7 @@ export default ResultScreen = ({ route, navigation }) => {
                     </View>
                     <Text style={styles.gameUrl}
                         onPress={() => Linking.openURL(data.game_url)}>
-                        {`Get ${data.title} here!`}
+                        {`Download ${data.title} here!`}
                     </Text>
                 </View>
             </ScrollView>
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
 
     },
     scrollView: {
-        margin: 15,
+        backgroundColor: 'rgba(44, 62, 80, 0.9)',
     },
     fontTitle: {
         fontSize: 25,
@@ -124,26 +124,23 @@ const styles = StyleSheet.create({
         flex: 1,
         marginTop: 10,
         height: 250,
-        borderTopRightRadius: 20,
-        borderTopLeftRadius: 20,
         resizeMode: 'cover'
     },
     container: {
+        flex: 1,
         justifyContent: 'center',
-        backgroundColor: 'rgba(44, 62, 80, 0.9)',
         paddingVertical: 10,
         paddingHorizontal: 15,
-        borderBottomLeftRadius: 20,
-        borderBottomRightRadius: 20,
     },
     techDataContainer: {
+        marginTop: 5,
         padding: 10,
         borderRadius: 10,
         backgroundColor: 'rgba(132, 207, 232, 0.1)'
     },
     gameUrl: {
         margin: 5,
-        fontSize: 16,
+        fontSize: 17,
         color: '#b0cfff',
         textDecorationLine: 'underline',
         textAlign: 'center'
