@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     },
     cardImg: {
         flex: 1,
-        height: 100,
+        height: 200,
         borderTopLeftRadius: 10,
         borderTopRightRadius: 10,
         resizeMode: 'cover'

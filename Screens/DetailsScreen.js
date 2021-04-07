@@ -206,7 +206,7 @@ const styles = StyleSheet.create({
         textAlign: 'left'
     },
     coverImg: {
-        width: 400,
+        flex: 1,
         height: 300,
         resizeMode: 'contain'
     },
